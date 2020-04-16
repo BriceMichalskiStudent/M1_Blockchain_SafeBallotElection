@@ -8,6 +8,8 @@
   },
   "scripts": {
     "dev": "lite-server",
+    "migrate": "truffle migrate",
+    "ganache": "ganache-cli -p 7545",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

@@ -10,7 +10,9 @@ contract Election {
     }
 
     // Read/write Candidates
-    mapping(uint256 => Candidate) public candidates;
+    mapping(uint => Candidate) public candidates;
+    // Store accounts that have voted
+    mapping(address => bool) public voters;
 
     // Store Candidates Count
     uint256 public candidatesCount;
@@ -23,5 +25,18 @@ contract Election {
     function addCandidate(string memory _name) private {
         candidatesCount++;
         candidates[candidatesCount] = Candidate(candidatesCount, _name, 0);
+    }
+
+    function vote(uint _candidateId) public {
+        require(!voters[msg.sender], "Le votant a déjà voté.");
+
+        require(_candidateId > 0 && _candidateId <= candidatesCount, "Votre candidat n'est pas valide.");
+
+        // Nous enregistrons la personne qui vient de voter
+        voters[msg.sender] = true;
+
+        // Le nombre de vote pour le candidat séléctionné augmente de 1.
+        candidates[_candidateId].voteCount++;
+
     }
 }
