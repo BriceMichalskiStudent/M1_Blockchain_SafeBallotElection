@@ -7,8 +7,9 @@
     "test": "test"
   },
   "scripts": {
-    "dev": "lite-server",
-    "migrate": "truffle migrate",
+    "dev": "lite-server -p 4555",
+    "truffle": "truffle test && truffle migrate && truffle deploy",
+    "update": "truffle migrate --reset && truffle migrate && truffle deploy",
     "ganache": "ganache-cli -p 7545",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
