@@ -139,7 +139,8 @@ const App = {
     });
   },
   castVote: function () {
-    const candidateId = $('#candidatesSelect').val();
+    const candidateId = $('input:checked').val();
+    console.log(candidateId);
     App.contracts.Election.deployed().then(function (instance) {
       return instance.vote(candidateId, { from: App.account });
     }).then(function (result) {
