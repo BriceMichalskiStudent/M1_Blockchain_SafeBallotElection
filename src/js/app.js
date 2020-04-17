@@ -6,6 +6,7 @@ const App = {
 
   logInit: function() {
     $('#election').hide();
+    $('#result').hide();
     $('#login').show();
     document.getElementById('signup-button').addEventListener('click', App.signup);
     document.getElementById("login-button").addEventListener('click', App.login);
@@ -32,6 +33,7 @@ const App = {
 
           $("#accountAddress").html("Your Account: " + accountGenerated);
           $('#election').show();
+          $('#result').show();
           $('#login').hide()
         }
       });

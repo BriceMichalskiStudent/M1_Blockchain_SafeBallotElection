@@ -13,11 +13,11 @@
     text-transform: uppercase
 }
 
-#social, footer p {
+#social, .footer p {
     float: right
 }
 
-#social ul li, .btn_1, a.btn_1, footer ul li {
+#social ul li, .btn_1, a.btn_1, .footer ul li {
     display: inline-block
 }
 
@@ -194,7 +194,7 @@ hr {
     color: #333
 }
 
-#logo_home h1, #social ul, footer p, footer ul {
+#logo_home h1, #social ul, .footer p, .footer ul {
     margin: 0;
     padding: 0
 }
