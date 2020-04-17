@@ -71,7 +71,10 @@ App = {
           candidatesResults.append(candidateTemplate);
   
           // Render candidate ballot option
-          var candidateOption = "<option value='" + id + "' >" + name + "</ option>"
+          var candidateOption = "<div class=\"col-lg-4\"><div class=\"item\">" +
+              "   <input id='answer_"+id+"' type=\"radio\" name=\"branch_1_group_1\" value='" + id + "' class=\"required\">\n" +
+              "   <label for='answer_"+id+"'><img src=\"images/president.svg\" alt=\"\"><strong>" + name + "</strong>Postea democritum mnesarchum ne nam, ad vim aperiri tractatos.</label>\n" +
+              "</div></div>";
           candidatesSelect.append(candidateOption);
         });
       }
