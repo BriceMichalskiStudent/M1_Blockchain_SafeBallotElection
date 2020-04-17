@@ -143,7 +143,7 @@ const App = {
       console.log("AJOUTE RESULT DANS LA BASE DE DONNÉE.");
       console.log("result ==> ", result);
       // Wait for votes to update
-      App.render();
+      // App.render();
 
     }).catch(function (err) {
       console.error(err);

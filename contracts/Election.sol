@@ -42,6 +42,7 @@ contract Election {
         // Le nombre de vote pour le candidat séléctionné augmente de 1.
         candidates[_candidateId].voteCount++;
 
+        emit votedEvent(_candidateId);
     }
 
 }

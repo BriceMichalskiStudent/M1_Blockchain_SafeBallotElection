@@ -1,3 +1,16 @@
+# !!!!!!
+# DÉSINSTALLEZ META-MASK
+# !!!!!!
+# FOR START
+
+```bash
+npm run ganache
+
+# In Another terminal
+npm run truffle && npm run dev
+
+```
+
 # SafeBallotElection
 
 The SafeBallotElection project will make it possible to carry out online voting anonymously while ensuring the reliability and immutability of the counts.
@@ -90,3 +103,4 @@ Please make sure to update tests as appropriate.
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
+
