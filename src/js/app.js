@@ -19,7 +19,6 @@ const App = {
     const unlocked = web3.personal.unlockAccount(accountGenerated, password, 10000);
 
     if (unlocked) {
-      console.log("Heyyy")
       App.account = accountGenerated;
 
       web3.eth.getCoinbase(function (err, coinBase) {
@@ -79,7 +78,6 @@ const App = {
     return App.initContract();
   },
   initContract: function () {
-    console.log("bonjour")
     $.getJSON("Election.json", function (election) {
       // Instantiate a new truffle contract from the artifact
       App.contracts.Election = TruffleContract(election);
