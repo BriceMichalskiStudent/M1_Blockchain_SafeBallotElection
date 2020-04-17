@@ -1,16 +1,3 @@
-# !!!!!!
-# DÉSINSTALLEZ META-MASK
-# !!!!!!
-# FOR START
-
-```bash
-npm run ganache
-
-# In Another terminal
-npm run truffle && npm run dev
-
-```
-
 # SafeBallotElection
 
 The SafeBallotElection project will make it possible to carry out online voting anonymously while ensuring the reliability and immutability of the counts.
@@ -49,11 +36,9 @@ Refer to [Ganache Documentation](https://www.trufflesuite.com/docs/ganache/quick
 Refer to
 [Ganache Documentation](https://www.trufflesuite.com/docs/ganache/quickstart#1-install-ganache)
 
-### Install Metamask extension on your browser
+### Uninstall Metamask extension on your browser
 
-Install it from [Metamask Download Page](https://metamask.io/download.html)
-
-Setting up metamask as described in [Truffle Documentation](https://www.trufflesuite.com/docs/truffle/getting-started/truffle-with-metamask#setting-up-metamask)
+For the moment metamask is in conflict with us, please uninstall it.
 
 ## Installation for development
 
@@ -85,7 +70,7 @@ module.exports = {
 ### Deploy smart contract
 
 ```bash
-$ truffle migrate
+$ npm run truffle
 ```
 
 ### Run local development server
@@ -103,4 +88,3 @@ Please make sure to update tests as appropriate.
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
-
