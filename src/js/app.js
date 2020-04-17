@@ -6,6 +6,7 @@ const App = {
 
   logInit: function() {
     $('#election').hide();
+    $('#result').hide();
     $('#login').show();
     document.getElementById('signup-button').addEventListener('click', App.signup);
     document.getElementById("login-button").addEventListener('click', App.login);
@@ -18,7 +19,6 @@ const App = {
     const unlocked = web3.personal.unlockAccount(accountGenerated, password, 10000);
 
     if (unlocked) {
-      console.log("Heyyy")
       App.account = accountGenerated;
 
       web3.eth.getCoinbase(function (err, coinBase) {
@@ -32,6 +32,7 @@ const App = {
 
           $("#accountAddress").html("Your Account: " + accountGenerated);
           $('#election').show();
+          $('#result').show();
           $('#login').hide()
         }
       });
@@ -77,7 +78,6 @@ const App = {
     return App.initContract();
   },
   initContract: function () {
-    console.log("bonjour")
     $.getJSON("Election.json", function (election) {
       // Instantiate a new truffle contract from the artifact
       App.contracts.Election = TruffleContract(election);
@@ -119,7 +119,10 @@ const App = {
           candidatesResults.append(candidateTemplate);
 
           // Render candidate ballot option
-          const candidateOption = "<option value='" + id + "' >" + name + "</ option>"
+          var candidateOption = "<div class=\"col-lg-4\"><div class=\"item\">" +
+              "   <input id='answer_"+id+"' type=\"radio\" name=\"branch_1_group_1\" value='" + id + "' class=\"required\">\n" +
+              "   <label for='answer_"+id+"'><img src=\"images/president.svg\" alt=\"\"><strong>" + name + "</strong></label>\n" +
+              "</div></div>";
           candidatesSelect.append(candidateOption);
         });
       }
@@ -136,7 +139,7 @@ const App = {
     });
   },
   castVote: function () {
-    const candidateId = $('#candidatesSelect').val();
+    const candidateId = $('input:checked').val();
     App.contracts.Election.deployed().then(function (instance) {
       return instance.vote(candidateId, { from: App.account });
     }).then(function (result) {
@@ -170,7 +173,10 @@ $(function () {
     App.logInit();
     $('#loginError').hide()
 
-    document.getElementById("logout").addEventListener('click', App.logInit);
+    document.getElementById("logout").addEventListener('click', () => {
+      App.logInit();
+      $(".cd-nav-trigger").click();
+    });
 
   });
 });
