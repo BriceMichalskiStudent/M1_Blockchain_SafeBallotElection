@@ -175,7 +175,10 @@ $(function () {
     App.logInit();
     $('#loginError').hide()
 
-    document.getElementById("logout").addEventListener('click', App.logInit);
+    document.getElementById("logout").addEventListener('click', () => {
+      App.logInit();
+      $(".cd-nav-trigger").click();
+    });
 
   });
 });
