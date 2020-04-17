@@ -4,7 +4,7 @@ const App = {
   account: '',
   web3: {},
 
-  logInit: function() {
+  logInit: function () {
     $('#election').hide();
     $('#result').hide();
     $('#login').show();
@@ -50,12 +50,13 @@ const App = {
       if (loginResult) {
         $("#accountAddress").html("Your Account: " + addr);
         $('#election').show();
+        $('#result').show();
         $('#login').hide()
       } else {
         $('#loginError').show()
       }
     } catch {
-      $('#loginError').show() 
+      $('#loginError').show()
     }
 
   },
@@ -118,9 +119,9 @@ const App = {
 
           // Render candidate ballot option
           var candidateOption = "<div class=\"col-lg-4\"><div class=\"item\">" +
-              "   <input id='answer_"+id+"' type=\"radio\" name=\"branch_1_group_1\" value='" + id + "' class=\"required\">\n" +
-              "   <label for='answer_"+id+"'><img src=\"images/president.svg\" alt=\"\"><strong>" + name + "</strong></label>\n" +
-              "</div></div>";
+            "   <input id='answer_" + id + "' type=\"radio\" name=\"branch_1_group_1\" value='" + id + "' class=\"required\">\n" +
+            "   <label for='answer_" + id + "'><img src=\"images/president.svg\" alt=\"\"><strong>" + name + "</strong></label>\n" +
+            "</div></div>";
           candidatesSelect.append(candidateOption);
         });
       }
@@ -139,7 +140,9 @@ const App = {
   castVote: function () {
     const candidateId = $('input:checked').val();
     App.contracts.Election.deployed().then(function (instance) {
-      return instance.vote(candidateId, { from: App.account });
+      return instance.vote(candidateId, {
+        from: App.account
+      });
     }).then(function (result) {
       console.log("AJOUTE RESULT DANS LA BASE DE DONNÉE.");
       console.log("result ==> ", result);
@@ -156,7 +159,7 @@ const App = {
         fromBlock: 0,
         toBlock: 'latest'
       }).watch(function (error, event) {
-        console.log("error" , error);
+        console.log("error", error);
         console.log("event triggered", event)
         // Reload when a new vote is recorded
         App.render();
