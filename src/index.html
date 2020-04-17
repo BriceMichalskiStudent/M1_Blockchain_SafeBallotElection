@@ -89,6 +89,11 @@
 
 <footer>
   <div class="container" style="width: 650px;">
+  <div id="login" class="text-center">
+    <h1>Connexion</h1>
+    <div class="alert alert-danger" role="alert" id="loginError">
+      Nom de compte ou mot de passe incorrect.
+    </div>
     <div class="row">
       <div class="col-lg-12">
         <h1 class="text-center">Real-time Results</h1>
@@ -110,6 +115,27 @@
             </tbody>
           </table>
           <hr />
+      <label>Clef publique
+        <input type="text" id="loginAdress" /></label>
+    </div>
+    <div class="row">
+      <label> Mot de passe
+        <input type="password" id="loginPassword" /></label>
+    </div>
+    <button id="login-button">Connexion</button>
+    </hr>
+    <div class="row">
+    <h1>Enregistrement</h1>
+      <label>Choisissez un mot de passe...
+        <input type="text" id="choosePassword" />
+    </div>
+      </label>
+    </br>
+    </div>
+      <button id="signup-button">Enregistrement</button>
+    <div class="row">
+            <p id="accountAddress" class="text-center"></p>
+            <button id="logout">Déconnexion</button>
         </div>
       </div>
     </div>
