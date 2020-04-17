@@ -520,17 +520,21 @@ button.submit {
     padding: 10px 30px
 }
 
-button.submit:before {
+button.submit.check:before {
     font-family: ElegantIcons;
     position: absolute;
     top: 8px;
     font-size: 18px
 }
 button.submit {
+    padding: 10px 20px 10px 20px
+}
+button.submit.check {
     padding: 10px 30px 10px 20px
 }
 
-button.submit:before {
+
+button.submit.check:before {
     content: "\4e";
     right: 10px
 }
@@ -549,4 +553,11 @@ button.submit:before {
     100% {
         stroke-dashoffset: 480px
     }
+}
+.color_red{
+    color: red!important;
+}
+#login{
+    width: 50%;
+    margin: 0 auto;
 }

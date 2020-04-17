@@ -121,7 +121,7 @@ const App = {
           // Render candidate ballot option
           var candidateOption = "<div class=\"col-lg-4\"><div class=\"item\">" +
               "   <input id='answer_"+id+"' type=\"radio\" name=\"branch_1_group_1\" value='" + id + "' class=\"required\">\n" +
-              "   <label for='answer_"+id+"'><img src=\"images/president.svg\" alt=\"\"><strong>" + name + "</strong>Postea democritum mnesarchum ne nam, ad vim aperiri tractatos.</label>\n" +
+              "   <label for='answer_"+id+"'><img src=\"images/president.svg\" alt=\"\"><strong>" + name + "</strong></label>\n" +
               "</div></div>";
           candidatesSelect.append(candidateOption);
         });
