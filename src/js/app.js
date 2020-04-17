@@ -8,8 +8,6 @@ const App = {
     $('#election').hide();
     $('#result').hide();
     $('#login').show();
-    document.getElementById('signup-button').addEventListener('click', App.signup);
-    document.getElementById("login-button").addEventListener('click', App.login);
   },
   signup: function () {
     const password = $('#choosePassword').get()[0].value
@@ -172,6 +170,8 @@ $(function () {
     App.init();
     App.logInit();
     $('#loginError').hide()
+    document.getElementById('signup-button').addEventListener('click', App.signup);
+    document.getElementById("login-button").addEventListener('click', App.login);
 
     document.getElementById("logout").addEventListener('click', () => {
       App.logInit();
