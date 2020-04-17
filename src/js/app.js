@@ -5,6 +5,7 @@ const App = {
   web3: {},
 
   logInit: function () {
+    // $('form').show();
     $('#election').hide();
     $('#result').hide();
     $('#login').show();
@@ -12,8 +13,6 @@ const App = {
   signup: function () {
     const password = $('#choosePassword').get()[0].value
     const accountGenerated = web3.personal.newAccount(password);
-    console.log("account ==> ", accountGenerated);
-    console.log("password ==>", password);
     const unlocked = web3.personal.unlockAccount(accountGenerated, password, 10000);
 
     if (unlocked) {
@@ -25,13 +24,14 @@ const App = {
           web3.eth.sendTransaction({
             from: coinBase,
             to: accountGenerated,
-            value: web3.toWei(10, "ether")
+            value: web3.toWei(1, "ether")
           });
 
           $("#accountAddress").html("Your Account: " + accountGenerated);
           $('#election').show();
           $('#result').show();
           $('#login').hide()
+          App.render();
         }
       });
 
@@ -48,6 +48,7 @@ const App = {
       const loginResult = web3.personal.unlockAccount(addr, password);
 
       if (loginResult) {
+        App.account = addr;
         $("#accountAddress").html("Your Account: " + addr);
         $('#election').show();
         $('#result').show();
@@ -101,11 +102,10 @@ const App = {
       electionInstance = instance;
       return electionInstance.candidatesCount();
     }).then(function (candidatesCount) {
-      const candidatesResults = $("#candidatesResults");
-      candidatesResults.empty();
-
-      const candidatesSelect = $('#candidatesSelect');
-      candidatesSelect.empty();
+      const candidateResult = document.getElementById("candidatesResults");
+      candidateResult.innerHTML = "";  
+      const candidatesSelect = document.getElementById("candidatesSelect");
+      candidatesSelect.innerHTML = "";
 
       for (let i = 1; i <= candidatesCount; i++) {
         electionInstance.candidates(i).then(function (candidate) {
@@ -114,15 +114,15 @@ const App = {
           const voteCount = candidate[2];
 
           // Render candidate Result
-          const candidateTemplate = "<tr><th>" + id + "</th><td>" + name + "</td><td>" + voteCount + "</td></tr>"
-          candidatesResults.append(candidateTemplate);
+          const candidateTemplate = `<tr><th>${id}</th><td>${name}</td><td>${voteCount}</td></tr>`.trim();
+          candidatesResults.innerHTML += candidateTemplate;
 
           // Render candidate ballot option
-          var candidateOption = "<div class=\"col-lg-4\"><div class=\"item\">" +
-            "   <input id='answer_" + id + "' type=\"radio\" name=\"branch_1_group_1\" value='" + id + "' class=\"required\">\n" +
-            "   <label for='answer_" + id + "'><img src=\"images/president.svg\" alt=\"\"><strong>" + name + "</strong></label>\n" +
-            "</div></div>";
-          candidatesSelect.append(candidateOption);
+          var candidateOption = `<div class="col-lg-4"><div class="item">
+            <input id="answer_${id}" type="radio" name="branch_1_group_1" value="${id}" class="required">
+            <label for="answer_${id}"><img src="images/president.svg" alt=""><strong>${name}</strong></label>
+            </div></div>`.trim();
+          candidatesSelect.innerHTML += candidateOption;
         });
       }
       return electionInstance.voters(App.account);
@@ -130,6 +130,8 @@ const App = {
       // Do not allow a user to vote
       if (hasVoted) {
         $('form').hide();
+      } else {
+        $('form').show();
       }
       loader.hide();
       content.show();
@@ -144,11 +146,8 @@ const App = {
         from: App.account
       });
     }).then(function (result) {
-      console.log("AJOUTE RESULT DANS LA BASE DE DONNÉE.");
-      console.log("result ==> ", result);
       // Wait for votes to update
-      // App.render();
-
+      App.render();
     }).catch(function (err) {
       console.error(err);
     });
@@ -159,10 +158,8 @@ const App = {
         fromBlock: 0,
         toBlock: 'latest'
       }).watch(function (error, event) {
-        console.log("error", error);
-        console.log("event triggered", event)
         // Reload when a new vote is recorded
-        App.render();
+  
       });
     });
   }
